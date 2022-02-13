@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"net/http"
 
 	"github.com/Mukunth-arya/mongoapi/models"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -33,8 +34,7 @@ func init() {
 	fmt.Println("All are ready", c3)
 }
 
-func insertdataone(datavalue models.Data) {
-
+func (datavalue models.Data) insertdata(w http.ResponseWriter, r *http.Request) {
 	insert, err := data.InsertOne(context.Background(), datavalue)
 	if err != nil {
 
