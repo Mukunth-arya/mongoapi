@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/Mukunth-arya/mongoapi/models"
+	"name/models"
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"go.mongodb.org/mongo-driver/x/mongo/driver/monocrypt/options"
 )
 
 const Connectionvalue = "mongodb+srv://mukunth:mukunth@mycluster.jptcn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
@@ -42,11 +42,11 @@ func insertdataone(datavalue models.Data) {
 		log.Fatal(err)
 	}
 	fmt.Println("one data were inserted", cur.InsertedID)
-	defer cur.Close(context.Background())
+
 }
 func efficentparameter(valueID string) {
 
-	cur1, _ := primitive.ObjectIDFromHEX(valueID)
+	cur1, _ := primitive.ObjectIDFromHex(valueID)
 	filter := bson.M{"_id": cur1}
 	update := bson.M{"$set": bson.M{"Trustworthy": true}}
 	cur, err := data.UpdateOne(context.Background(), filter, update)
@@ -55,11 +55,11 @@ func efficentparameter(valueID string) {
 		log.Fatal(err)
 	}
 	fmt.Println("were all the data is modified", cur.ModifiedCount)
-	defer cur.Close(context.Background())
+
 }
 func deleteone(valueID string) {
 
-	cur1 := primitive.ObjectIDFromHEX(valueID)
+	cur1, _ := primitive.ObjectIDFromHex(valueID)
 	filter := bson.M{"_id": cur1}
 	cur, err := data.DeleteOne(context.Background(), filter)
 	if err != nil {
@@ -67,19 +67,19 @@ func deleteone(valueID string) {
 		log.Fatal(err)
 	}
 	fmt.Println("here comes the deletecount", cur)
-	defer cur.Close(context.Background())
+
 }
 
 func deleteall() int64 {
 
-	cur, err := data.DeleteAll(context.Background(), bson.D{})
+	cur, err := data.DeleteMany(context.Background(), bson.D{})
 	if err != nil {
 
 		log.Fatal(err)
 	}
 	fmt.Println("here comes the Deletedcount", cur.DeletedCount)
 	return cur.DeletedCount
-	defer cur.Close(context.Background())
+
 }
 func getallsource() {
 

@@ -6,7 +6,7 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"github.com/Mukunth-arya/mongoapi/router"
+	"name/router"
 )
 
 func main() {

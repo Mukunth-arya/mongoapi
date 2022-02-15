@@ -1,4 +1,4 @@
-module github.com/Mukunth-arya/mongoapi
+module name
 
 go 1.13
 

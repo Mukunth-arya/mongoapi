@@ -7,8 +7,8 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"github.com/Mukunth-arya/mongoapi/controller"
-	"github.com/Mukunth-arya/mongoapi/models"
+	"name/controller"
+	"name/models"
 )
 
 func getalldata(w http.ResponseWriter, r *http.Request) {
